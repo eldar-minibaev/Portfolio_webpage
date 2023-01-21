@@ -3,7 +3,7 @@
     --headerFont: 3rem;
     --footerPading: 0.5rem;
     --foterFont: 1rem;
-    --imageXYSize: 25rem;
+    --imageXYSize: 14rem;
 }
 body {
     display:flex;
@@ -139,10 +139,6 @@ h1 {
  
 /*FOOTER */
 footer{
-    /* position:fixed;
-    bottom:0px;
-    width:100vw; */
-    
     font-size: var(--foterFont);
     padding:var(--footerPading);
     text-align: left;
