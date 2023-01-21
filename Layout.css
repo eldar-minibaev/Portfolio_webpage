@@ -1,98 +1,120 @@
+:root{
+    --headerPadding: 0.5rem;
+    --headerFont: 3rem;
+    --footerPading: 0.5rem;
+    --foterFont: 1rem;
+    --imageXYSize: 25rem;
+}
 body {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
     margin:0%;
     padding:0%;
+    height: 100vh;
     background-color: rgb(141 143 145);
-   
-}
-
-/* NAVIGATION BAR&FOOTER */
-.navBar, footer {
-    display:flex;
-    list-style-type: none;
-    font-size: 1rem;
-    height: 1rem;
-    text-align: left;
-    margin:0%;
-    padding:0.5rem;
-    background-color: rgb(57, 60, 64);
-    color: rgb(205, 205, 211);
-   
-}
-.navBar a{
-    color: rgb(205, 205, 211);
-}
-.navBar li{
-    display:inline-block;
-}
-.navBarItemLast {
-    margin-left: auto;
-}
-footer{
-    margin-top:1rem;
 }
 
 /* HEADER */
 h1 {
     text-align: center;
     color: rgb(205, 205, 211);
-    font-size: 3rem;
+    font-size: var(--headerFont);
     margin:0%;
-    padding:0.5rem;
+    padding:var(--headerPadding);
     background-color: rgb(94, 95, 97);
 }
-
-
+/* MENU AND IMAGES DIV */
+#menuAndImagesDiv{
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 1;
+    flex-grow:1;
+    height: 30px;
+    width:100%;
+    background-color: black;
+    background : url("Texture.jpg");
+    /* background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px; */
+}
 
 /* MAIN MENU */
-.mainMenuContainer{
-    display: flex;
-    height:600px;
-    height:100vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 500px;
+#menuDiv{
+    display:flex;
+    margin:0;
+    padding: 0;
+    height:100%;
+    flex-basis:30%;
+    align-items: left;
+    overflow: scroll;
+    background: linear-gradient(90deg, rgba(222,222,222,1) 10%, rgba(222,222,222,0.3) 100%);
+}
+#menuDiv::-webkit-scrollbar {
+    display: none;
 }
 .mainmenu {
-    list-style-type: none;
-    font-size: 2.5rem;
-    text-align: center;
-    margin:0;
-    padding:0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(-20%);
-}
-.mainmenu li {
-    padding:0%;
+    justify-content: flex-start;
+    align-items: left;
+    height:100%;
+    width:100%;
+    gap: 2rem;
+    list-style-type: none;
+    font-size: 1.5rem;
+    text-align: left;
+    margin:0;
+    padding: 0;
+ 
+    min-height:10rem;
+
 }
 .mainmenu a{
     text-decoration: none;
     color: rgb(66 66 68);
 }
+.mainmenu li{
+    padding-top:0.5rem;
+    padding-left:0.5rem;
+}
+
 
 /* IMAGES */
-.images{
-    display:flex;
+#imagesDiv {
+    display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    flex-basis: 70%;
+    height:100%;
+    gap: 0.5rem;
+    margin:auto;
+    padding:auto;
     justify-content: center;
-    margin-top: 1rem;
-
+    align-items: center;
+    overflow: scroll;
 }
+#imagesDiv::-webkit-scrollbar {
+    display: none;
+}
+
 .singleImgDiv{
     background-color:rgb(176, 176, 176);
-    width:25rem;
-    height:25rem;
+    width:var(--imageXYSize);
+    height:var(--imageXYSize);
     overflow: hidden;
     border-radius: 10%;
     border-style: solid;
-    border-width: 10px;
+    border-width: 0.5rem;
     border-color: rgb(176, 176, 176);
- }
- .singleImgDiv :hover {
+    margin:0.5rem;
+}
+.singleImgDiv :hover {
     transform: scale(1.1);
     cursor: pointer;
 }
@@ -100,21 +122,32 @@ h1 {
     height:100%;
 
  }
- .largerHeight{
+.largerHeight{
     width:100%;
- }
- .largerHeight, .largerWidth{
+}
+.largerHeight, .largerWidth{
     object-fit:cover;
     transition: all 1s;
 
- }
+}
 
  #singleImage {
     display:flex;
     overflow: hidden;
- }
+}
 
  
-
+/*FOOTER */
+footer{
+    /* position:fixed;
+    bottom:0px;
+    width:100vw; */
+    
+    font-size: var(--foterFont);
+    padding:var(--footerPading);
+    text-align: left;
+    background-color: rgb(57, 60, 64);
+    color: rgb(205, 205, 211);
+} 
 
 

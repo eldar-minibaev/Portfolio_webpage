@@ -40,12 +40,14 @@ const pagesList = [
     {imageQuantity: 4}
 ]
 
+
 const pageNumber = parseInt(getParameter("pageNumber"))-1;
 const pageName = getParameter("pageName");
 
 const imagesURL = `images\\${pageName}\\`;
 const pageTitle = document.getElementById("mainTitle");
 const pageHeader = document.getElementById("mainHeader");
+
 let imageSRC = '';
 
 pageTitle.innerHTML = pageName;
