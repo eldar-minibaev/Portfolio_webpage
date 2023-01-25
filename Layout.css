@@ -5,6 +5,14 @@
     --foterFont: 1rem;
     --imageXYSize: 14rem;
 }
+@font-face {
+    font-family: NanumGothic;
+    src: url(Fonts/NanumGothic/NanumGothic-Regular.ttf);
+}
+@font-face {
+    font-family: Oxygen;
+    src: url(Fonts/Oxygen/Oxygen-Regular.ttf);
+}
 body {
     display:flex;
     flex-direction: column;
@@ -16,13 +24,18 @@ body {
 }
 
 /* HEADER */
+#headerDiv {
+    background-color: rgb(94, 95, 97);
+    border-bottom: 3px solid rgba(220, 220, 220, 1);
+}
+
 h1 {
     text-align: center;
+    font-family: NanumGothic;
     color: rgb(205, 205, 211);
     font-size: var(--headerFont);
     margin:0%;
     padding:var(--headerPadding);
-    background-color: rgb(94, 95, 97);
 }
 /* MENU AND IMAGES DIV */
 #menuAndImagesDiv{
@@ -30,24 +43,16 @@ h1 {
     flex-direction: row;
     flex-shrink: 1;
     flex-grow:1;
-    height: 30px;
+    height: 130px;
     width:100%;
     background-color: black;
     background : url("Texture.jpg");
-    /* background:
-    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
-    background-color: #131313;
-    background-size: 20px 20px; */
 }
 
 /* MAIN MENU */
 #menuDiv{
     display:flex;
+    font-family: Oxygen;
     margin:0;
     padding: 0;
     height:100%;
@@ -66,16 +71,17 @@ h1 {
     align-items: left;
     height:100%;
     width:100%;
-    gap: 2rem;
+    gap: 0.5rem;
     list-style-type: none;
     font-size: 1.5rem;
     text-align: left;
     margin:0;
     padding: 0;
- 
     min-height:10rem;
 
 }
+
+
 .mainmenu a{
     text-decoration: none;
     color: rgb(66 66 68);
@@ -84,13 +90,31 @@ h1 {
     padding-top:0.5rem;
     padding-left:0.5rem;
 }
+.mainmenu li :hover{
+    color: rgb(255, 255, 255);
+}
+.homeMenuItem li{
+    font-size: 5rem;
+}
+
+@media screen and (max-width: 700px){
+    .mainmenu {
+        font-size: 1rem;
+    }    
+}
+@media screen and (min-width: 850px){
+    #menuDiv {
+        flex-basis:15rem;
+    }    
+}
 
 
 /* IMAGES */
 #imagesDiv {
     display: flex;
     flex-wrap: wrap;
-    flex-basis: 70%;
+    flex-basis: 10%;
+    flex-grow: 1;
     height:100%;
     gap: 0.5rem;
     margin:auto;
@@ -99,25 +123,40 @@ h1 {
     align-items: center;
     overflow: scroll;
 }
+
+@keyframes imageAppears {
+    0%{
+        transform:scale(0);
+        opacity:0;
+    }
+    100%{
+        transform: scale(1);
+        opacity:100%;
+    }
+}
 #imagesDiv::-webkit-scrollbar {
     display: none;
 }
 
-.singleImgDiv{
-    background-color:rgb(176, 176, 176);
+.singleImgDiv {
     width:var(--imageXYSize);
     height:var(--imageXYSize);
     overflow: hidden;
+    background-color:rgb(176, 176, 176);
     border-radius: 10%;
     border-style: solid;
     border-width: 0.5rem;
     border-color: rgb(176, 176, 176);
     margin:0.5rem;
+    animation: imageAppears 0.7s ease-in-out forwards;
+    transition: all 0.7s ease-in-out;
 }
+
 .singleImgDiv :hover {
     transform: scale(1.1);
     cursor: pointer;
 }
+
 .largerWidth{
     height:100%;
 
@@ -127,11 +166,10 @@ h1 {
 }
 .largerHeight, .largerWidth{
     object-fit:cover;
-    transition: all 1s;
-
+    transition: all 0.7s ease-in-out;
 }
 
- #singleImage {
+#singleImage {
     display:flex;
     overflow: hidden;
 }

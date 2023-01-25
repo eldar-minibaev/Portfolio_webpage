@@ -48,6 +48,7 @@ const imagesURL = `images\\${pageName}\\`;
 const pageTitle = document.getElementById("mainTitle");
 const pageHeader = document.getElementById("mainHeader");
 
+
 let imageSRC = '';
 
 pageTitle.innerHTML = pageName;
