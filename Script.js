@@ -1,3 +1,8 @@
+function getData() {
+    fetch("./Pages.json")
+    .then(res => res.json())
+    .then(data => console.log(data));
+}
 function getParameter(parameterName) {
     let parameters = new URLSearchParams(window.location.search);
     return parameters.get(parameterName);
@@ -20,7 +25,7 @@ function addImageToPage(imageSource, targetDivID, i) {
             {
                 var width = (newImage.width);
                 var height = (newImage.height);
-                if (width<height) {
+                if (width<=height) {
                     newImage.className ="largerHeight";
                 } else {
                     newImage.className ="largerWidth";
@@ -44,7 +49,7 @@ const pagesList = [
 const pageNumber = parseInt(getParameter("pageNumber"))-1;
 const pageName = getParameter("pageName");
 
-const imagesURL = `images\\${pageName}\\`;
+const imagesURL = `thumbs\\${pageName}\\`;
 const pageTitle = document.getElementById("mainTitle");
 const pageHeader = document.getElementById("mainHeader");
 
@@ -58,3 +63,5 @@ for (let i=1;  i <= pagesList[pageNumber].imageQuantity; i++) {
     imageSRC = `${imagesURL}image${i}.jpg`;
     addImageToPage(imageSRC, "imagesDiv", i);
 }
+
+getData();
