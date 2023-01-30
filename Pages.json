@@ -1,0 +1,26 @@
+[
+    {"name": "Home",
+    "imageQuantity":0 
+    },
+    {"name": "Personal work",
+     "imageQuantity":14 
+    },
+    {"name": "Comercial work",
+    "imageQuantity":1 
+    },
+    {"name": "Character design",
+    "imageQuantity":2 
+    },
+    {"name": "Life painting",
+    "imageQuantity":14 
+    },
+    {"name": "Life drawing",
+    "imageQuantity":6 
+    },
+    {"name": "Sculpture",
+    "imageQuantity":12 
+    },
+    {"name": "3D",
+    "imageQuantity":4 
+    }
+]

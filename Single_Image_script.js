@@ -6,7 +6,7 @@ const imageNumber = parseInt(getParameter("imageNumber"));
 const pageName = getParameter("pageName");
 const imageQuantity = parseInt(getParameter("imageQuantity"));
 const pageNumber= parseInt(getParameter("pageNumber"));
-const imagePageName="Image_page.html";
+const imagePageName="index.html";
 const singleImageDiv = document.getElementById("singleImage");
 const newImage = document.createElement("img");
 
