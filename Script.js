@@ -1,67 +1,133 @@
-function getData() {
-    fetch("./Pages.json")
-    .then(res => res.json())
-    .then(data => console.log(data));
-}
-function getParameter(parameterName) {
-    let parameters = new URLSearchParams(window.location.search);
-    return parameters.get(parameterName);
+const pages = [
+    {name: "Home",
+     imageQuantity:0 
+    },
+    {name: "Personal work",
+     imageQuantity:14 
+    },
+    {name: "Comercial work",
+    imageQuantity:1 
+    },
+    {name: "Character design",
+    imageQuantity:2 
+    },
+    {name: "Life painting",
+    imageQuantity:14 
+    },
+    {name: "Life drawing",
+    imageQuantity:6 
+    },
+    {name: "Sculpture",
+    imageQuantity:12 
+    },
+    {name: "3D",
+    imageQuantity:4 
+    }
+]
+let currentPage=0;
+let storedColor="";
+
+function addButton(number) {
+    const mainMenu = document.getElementById("mainMenu");
+
+    //CREATING NEW MENU ELEMENTS
+    const newLi = document.createElement("li");
+    const newButton  = document.createElement("button");
+
+    //ADDING CLASSES AND IDs
+    newLi.className = "menuItem";
+    newButton.className = "mainMenuButton";
+    newButton.id = `mainMenuButton${number}`;
+    newButton.innerHTML = pages[number].name;
+
+    //ADDING EVENT LISTENER
+    newButton.addEventListener("click", function buttonClick(){
+        changePage(number);
+    })
+
+    //APPENDING CHILDREN
+    newLi.appendChild(newButton);
+    mainMenu.appendChild(newLi);
 }
 
-function addImageToPage(imageSource, targetDivID, i) {
-    const imagesDiv=document.getElementById(targetDivID);
+function createButtons(){
+    const mainMenu = document.getElementById("mainMenu");
+    mainMenu.innerHTML="";
+
+    for(let i=0; i<pages.length;i++) {
+        addButton(i);
+    }
+}
+
+function highlightButton(buttonNumber){
+    const button = document.getElementById(`mainMenuButton${buttonNumber}`);
+    storedColor =  button.style.color;
+    button.style.color = " rgb(255, 255, 255)";
+}
+function unHighlightButton(buttonNumber){
+    const button = document.getElementById(`mainMenuButton${buttonNumber}`);
+    button.style.color = storedColor;
+}
+
+
+//FUNCTIONS ADD/DELETE IMAGES
+function addImageToPage(pageNumber, imageNumber) {
+
+    const imagesURL = `thumbs\\${pages[pageNumber].name}\\`;
+    let imageSRC = `${imagesURL}image${imageNumber}.jpg`;
+
+    const imagesDiv=document.getElementById("imagesDiv");
     const newDiv = document.createElement("div");
     const newImage  = document.createElement("img");
     const newLink  = document.createElement("a");
 
     newDiv.className = "singleImgDiv";
-    newImage.src = imageSource;
-    newLink.href = `single_image.html?pageName=${pageName}&imageNumber=${i}&imageQuantity=${pagesList[pageNumber].imageQuantity}&pageNumber=${pageNumber}`;
+    newImage.src = imageSRC;
+    newLink.href = `single_image.html?pageName=${pages[pageNumber].name}&imageNumber=${imageNumber}&imageQuantity=${pages[pageNumber].imageQuantity}&pageNumber=${pageNumber}`;
 
     newLink.appendChild(newImage);
     newDiv.appendChild(newLink);
     imagesDiv.appendChild(newDiv);
     newImage.onload = function()
             {
-                var width = (newImage.width);
-                var height = (newImage.height);
-                if (width<=height) {
-                    newImage.className ="largerHeight";
-                } else {
-                    newImage.className ="largerWidth";
-                }
-
+                    newImage.className ="image";
             }
 }
-
-
-const pagesList = [
-    {imageQuantity: 14},
-    {imageQuantity: 1},
-    {imageQuantity: 2},
-    {imageQuantity: 14},
-    {imageQuantity: 6},
-    {imageQuantity: 12},
-    {imageQuantity: 4}
-]
-
-
-const pageNumber = parseInt(getParameter("pageNumber"))-1;
-const pageName = getParameter("pageName");
-
-const imagesURL = `thumbs\\${pageName}\\`;
-const pageTitle = document.getElementById("mainTitle");
-const pageHeader = document.getElementById("mainHeader");
-
-
-let imageSRC = '';
-
-pageTitle.innerHTML = pageName;
-pageHeader.innerHTML = pageName;
-
-for (let i=1;  i <= pagesList[pageNumber].imageQuantity; i++) {
-    imageSRC = `${imagesURL}image${i}.jpg`;
-    addImageToPage(imageSRC, "imagesDiv", i);
+function addImages(pageNumber){
+    for (let i=1;  i <= pages[pageNumber].imageQuantity; i++) {
+        addImageToPage(pageNumber, i);
+    }
+}
+function deleteImages(){
+    const imagesDiv=document.getElementById("imagesDiv");
+    imagesDiv.innerHTML ="";
 }
 
-getData();
+
+//FUNCTION CHANGING THE PAGE CONTENT
+function changePage(pageNumber){
+    //CHANGING TITLE AND HEADER
+    const pageTitle = document.getElementById("mainTitle");
+    const pageHeader = document.getElementById("mainHeader");
+
+    pageTitle.innerHTML = pages[pageNumber].name;
+    pageHeader.innerHTML = pages[pageNumber].name;
+
+    //ADDING IMAGES
+    if (pageNumber != currentPage) {
+        deleteImages();
+        addImages(pageNumber);
+        unHighlightButton(currentPage);
+        highlightButton(pageNumber);
+        currentPage = pageNumber;
+    }
+    
+
+}
+function homePageOpen(pageNumber) {
+    //CHANGING TITLE AND HEADER
+    changePage(pageNumber);
+    createButtons();
+}
+
+homePageOpen(0);

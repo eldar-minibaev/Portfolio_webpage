@@ -1,4 +1,7 @@
 [
+    {"name": "Home",
+    "imageQuantity":0 
+    },
     {"name": "Personal work",
      "imageQuantity":14 
     },
