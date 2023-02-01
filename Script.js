@@ -84,7 +84,7 @@ function unHighlightButton(buttonNumber){
 //FUNCTIONS ADD/DELETE IMAGES
 function addImageToPage(pageNumber, imageNumber) {
 
-    const imagesURL = `thumbs\\${pages[pageNumber].name}\\`;
+    const imagesURL = `Thumbs\\${pages[pageNumber].name}\\`;
     let imageSRC = `${imagesURL}image${imageNumber}.jpg`;
 
     const imagesDiv=document.getElementById("imagesDiv");
