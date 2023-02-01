@@ -26,6 +26,13 @@ const pages = [
 ]
 let currentPage=0;
 let storedColor="";
+let pageNumberParameter = "";
+
+
+function getParameter(parameterName) {
+    let parameters = new URLSearchParams(window.location.search);
+    return parameters.get(parameterName);
+}
 
 function addButton(number) {
     const mainMenu = document.getElementById("mainMenu");
@@ -42,7 +49,11 @@ function addButton(number) {
 
     //ADDING EVENT LISTENER
     newButton.addEventListener("click", function buttonClick(){
+        newButton.classList.add("buttonClickAnimation");
+        setTimeout(() =>{
         changePage(number);
+        newButton.classList.remove("buttonClickAnimation");
+        },150);
     })
 
     //APPENDING CHILDREN
@@ -105,7 +116,7 @@ function deleteImages(){
 
 
 //FUNCTION CHANGING THE PAGE CONTENT
-function changePage(pageNumber){
+function openPage(pageNumber){
     //CHANGING TITLE AND HEADER
     const pageTitle = document.getElementById("mainTitle");
     const pageHeader = document.getElementById("mainHeader");
@@ -114,20 +125,31 @@ function changePage(pageNumber){
     pageHeader.innerHTML = pages[pageNumber].name;
 
     //ADDING IMAGES
+    addImages(pageNumber);
+    highlightButton(pageNumber);
+    
+
+}
+function changePage(pageNumber){
     if (pageNumber != currentPage) {
         deleteImages();
-        addImages(pageNumber);
         unHighlightButton(currentPage);
-        highlightButton(pageNumber);
+        openPage(pageNumber);
         currentPage = pageNumber;
     }
     
 
 }
-function homePageOpen(pageNumber) {
-    //CHANGING TITLE AND HEADER
-    changePage(pageNumber);
-    createButtons();
-}
 
-homePageOpen(0);
+pageNumberParameter = getParameter("pageNumber");
+console.log(pageNumberParameter);
+if(pageNumberParameter!=null) 
+{
+    createButtons();
+    openPage(pageNumberParameter);
+    currentPage=pageNumberParameter;
+} else
+{
+    createButtons();
+    openPage(0);
+}
