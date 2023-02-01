@@ -118,11 +118,11 @@ function deleteImages(){
 //FUNCTION CHANGING THE PAGE CONTENT
 function openPage(pageNumber){
     //CHANGING TITLE AND HEADER
-    const pageTitle = document.getElementById("mainTitle");
-    const pageHeader = document.getElementById("mainHeader");
+    // const pageTitle = document.getElementById("mainTitle");
+    // const pageHeader = document.getElementById("mainHeader");
 
-    pageTitle.innerHTML = pages[pageNumber].name;
-    pageHeader.innerHTML = pages[pageNumber].name;
+    // pageTitle.innerHTML = pages[pageNumber].name;
+    // pageHeader.innerHTML = pages[pageNumber].name;
 
     //ADDING IMAGES
     addImages(pageNumber);
@@ -143,6 +143,11 @@ function changePage(pageNumber){
 
 pageNumberParameter = getParameter("pageNumber");
 console.log(pageNumberParameter);
+const pageTitle = document.getElementById("mainTitle");
+const pageHeader = document.getElementById("mainHeader");
+
+pageTitle.innerHTML = "Eldar Minibaev Art";
+pageHeader.innerHTML = "Eldar Minibaev Art";
 if(pageNumberParameter!=null) 
 {
     createButtons();
